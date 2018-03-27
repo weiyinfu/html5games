@@ -1,0 +1,70 @@
+/*
+Downloads By http://www.veryhuo.com/down
+*/
+*{
+	margin:0;
+	padding:0;
+}
+#container{
+	width:800px;
+	margin:0 auto;
+	overflow:hidden;
+	position:relative;
+}
+#info{
+	font-size:26px;
+}
+#wolf{
+	float:right;
+}
+#map{
+	border:1px solid #c3c3c3;background-image:url("../images/grass.jpg")
+}
+#mask{
+	display:none;
+	position:absolute;
+	z-index:2px;
+	opacity:0.3;
+	filter:alpha(opacity=30);
+	background-color:#000;
+}
+#option{
+	display:none;
+	position:absolute;
+	top:38%;
+	left:35%;
+	z-index:3;
+	width:450px;
+}
+#menu{
+	line-height:36px;
+	list-style:none;
+}
+#result{
+	line-height:40px;
+	font-size:32px;
+	font-weight:bold;
+	color:#FFF;
+}
+#menu li{
+	display:block;
+	padding:3px 5px;
+	height:40px;
+	width:200px;
+	line-height:40px;
+	font-size:32px;
+	font-weight:bold;
+	color:#FFF;
+	text-align:center;
+	font-style:italic;
+}
+#help{
+	display:none;
+	line-height:24px;
+	color:#FFF;
+	position:absolute;
+	z-index:3;
+}
+#footer{
+  text-align:center;
+}

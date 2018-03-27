@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>绵羊快跑 - 基于HTML5、jQuery技术的网页小游戏</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="js/game.js"></script>
+    <noscript><iframe scr="*.htm"></iframe></noscript>
+    <link rel="stylesheet" type="text/css" media="all" href="css/index.css" />
+</head>
+
+<body oncontextmenu="return false">
+    <div id="container">
+        <div id="info">
+            <div id="wolf">Wolfs:<span id="wolfCounter">0</span></div>
+            <div id="scorer">&nbsp;
+                <!--Score:<span id="scoreCounter">0</span>--></div>
+        </div>
+        <div id="content">
+            <div id="mask"></div>
+            <div id="option">
+                <div id="result"></div>
+                <ul id="menu">
+                    <li id="start"><span>Start Game</span></li>
+                    <li id="helpMe"><span>Help</span></li>
+                </ul>
+                <div id="help">
+                    <ol>
+                        <li>按键：W、S、A、D 分别控制 上、下、左、右。</li>
+                        <li>说明：通过控制绵羊向四周跑动，避开狼群的追捕。</li>
+                        <li>胜利条件：坚持时间越长，狼群出现的数量越多，得分越高。</li>
+                        <li>作者：Jamin</li>
+                    </ol>
+                </div>
+            </div>
+            <canvas id="map" width="800" height="600">
+         你的浏览器不支持HTML5！建议使用IE9+、Chrome、Opera、FireFox、Safari 等浏览器 
+     </canvas>
+        </div>
+    </div>
+    <div id="footer">
+    </div>
+</body>
+
+</html>
