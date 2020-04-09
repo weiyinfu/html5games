@@ -1,0 +1,127 @@
+<html>
+
+<head>
+    <style type="text/css">
+    .txt {
+        width: 50;
+        height: 50;
+        background-color: black;
+        color: white;
+        text-align: center;
+        font-family: Consolas;
+        font-size: 40;
+    }
+    
+    .btn {
+        width: 200;
+        height: 60;
+        text-align: center;
+        font-family: 楷体;
+        font-size: 40;
+        color: white;
+        background-color: black;
+    }
+    </style>
+</head>
+<h1 align="center">请输入已知的数字</h1>
+<script type="text/javascript">
+init();
+var a = new Array(81);
+var over = false;
+
+function run() {
+    if (cin() == false)
+        document.getElementById('re').innerHTML = '输入不合法';
+    else {
+        over = false;
+        document.getElementById('re').innerHTML = '正在运行';
+        go(0, 0);
+        if (over) {
+            cout();
+            document.getElementById('re').innerHTML = '运行结束';
+        } else
+            document.getElementById('re').innerHTML = '条件太少,没找到答案';
+    }
+}
+
+function cout() {
+    for (var i = 0; i < 81; i++) {
+        document.getElementById('grid' + i).value = a[i];
+    }
+}
+
+function cin() {
+    for (var i = 0; i < 81; i++) {
+        a[i] = document.getElementById('grid' + i).value;
+        if (a[i] == undefined || a[i] == '')
+            a[i] = 0;
+    }
+    return true;
+}
+
+function canBe(x, y, v) {
+    for (var i = 0; i < 9; i++) {
+        if (i != x && v == a[i * 9 + y])
+            return false;
+        else if (i != y && v == a[x * 9 + i])
+            return false;
+    }
+    var xx = Math.floor(x / 3) * 3;
+    var yy = Math.floor(y / 3) * 3;
+    for (var i = xx; i < xx + 3; i++) {
+        for (var j = yy; j < yy + 3; j++) {
+            if (a[i * 9 + j] == v && (i != x || y != j))
+                return false;
+        }
+    }
+    return true;
+}
+
+function next(x, y) {
+    var z = x * 9 + y + 1;
+    if (z == 81)
+        over = true;
+    else
+        go(Math.floor(z / 9), z % 9);
+}
+
+function go(x, y) {
+    if (a[x * 9 + y] == 0) {
+        for (var i = 1; i <= 9; i++) {
+            if (canBe(x, y, i)) {
+                a[x * 9 + y] = i;
+                next(x, y);
+                if (over)
+                    return;
+            }
+        }
+        a[x * 9 + y] = 0;
+    } else {
+        next(x, y);
+    }
+}
+
+function clr() {
+    for (var i = 0; i < 81; i++)
+        document.getElementById('grid' + i).value = '';
+}
+
+function init() {
+    document.write("<table align='center'>");
+    for (var i = 0; i < 9; i++) {
+        document.write("<tr>");
+        for (var j = 0; j < 9; j++) {
+            document
+                .write("<td><input type='text' maxlength=1 class='txt' id='grid" + (i * 9 + j) + "'></input></td>");
+        }
+        document.write("</tr>");
+    }
+    document.write("</table>");
+}
+</script>
+<input type="button" value='清空' class='btn' onclick="clr()"></input>
+<input type="button" value='运行' class='btn' onclick="run()"></input>
+<h3 id='re'>weidiao</h3>
+<h3 id='haha'></h3>
+
+</html>
