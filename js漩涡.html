@@ -1,0 +1,54 @@
+<html>
+<title>What's the ball's orbit if they head for it's next ball.</title>
+<canvas id="ca"></canvas>
+<script>
+ca.width = ca.height = 1000;
+var centerX = ca.width / 2,
+    centerY = ca.height / 2;
+var g = ca.getContext('2d');
+var ro = Math.min(ca.width, ca.height) / 2 / Math.sqrt(3),
+    the = 0;
+var r = 15;
+var v = 10;
+var cnt = 7;
+
+function circle(x, y, r) {
+    g.beginPath();
+    g.arc(x, y, r, 0, 360);
+    g.closePath();
+    g.fill();
+}
+
+function dot(ro, the) {
+    var x = centerX + ro * Math.cos(the),
+        y = centerY + ro * Math.sin(the);
+    circle(x, y, r);
+}
+
+function go() {
+    var ax = ro * Math.cos(the),
+        ay = ro * Math.sin(the);
+    var bx = ro * Math.cos(the + Math.PI * 2 / cnt),
+        by = ro * Math.sin(the + Math.PI / cnt * 2);
+    var dx = bx - ax,
+        dy = by - ay;
+    var d = Math.sqrt(dx * dx + dy * dy);
+    var mx = (ax * v + bx * (d - v)) / d,
+        my = (ay * v + by * (d - v)) / d;
+    ro = Math.sqrt(mx * mx + my * my), the = Math.atan2(my, mx);
+    //r*=0.98;
+    //v*=0.99;
+}
+var move = setInterval(function() {
+    if (Math.abs(ro) < 0.001) {
+        clearInterval(move);
+        return;
+    }
+    // g.clearRect(0,0,ca.width,ca.height);
+    go();
+    for (var i = 0; i < cnt; i++)
+        dot(ro, the + i * 2 * Math.PI / cnt);
+}, 100);
+</script>
+
+</html>
